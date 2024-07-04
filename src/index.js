@@ -52,6 +52,10 @@ try {
     console.error(error);
 }
 
+app.get('/', (req, res) => {
+    res.send('Aplikasi Node.js dengan CORS diizinkan dari semua origin');
+});
+
 httpServer.listen(5000, () => {
     console.log(`Express server listening on port: ${port}...`);
 });
