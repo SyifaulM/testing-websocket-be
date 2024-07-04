@@ -8,13 +8,20 @@ const port = 5000;
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: ["http://localhost:3000", "https://testing-websocket-fe.vercel.app/" ],
-        methods: ["GET", "POST"]
+        origin: ["http://localhost:3000", "https://testing-websocket-fe.vercel.app", "https://testing-websocket-be.vercel.app" ],
+        methods: ["GET", "POST"],
+        allowedHeaders: ["Content-Type"],
+        credentials: true
     }
 });
 
 try {
-    app.use(cors());
+    app.use(cors({
+        origin: ["http://localhost:3000", "https://testing-websocket-fe.vercel.app", "https://testing-websocket-be.vercel.app"],
+        methods: ["GET", "POST"],
+        allowedHeaders: ["Content-Type"],
+        credentials: true
+    }));
     app.use(express.json());
 
     io.on('connection', (socket) => {
