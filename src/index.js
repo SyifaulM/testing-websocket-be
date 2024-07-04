@@ -8,7 +8,7 @@ const port = 5000;
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: ["http://localhost:3000", "https://order-app-frontend.vercel.app"],
+        origin: ["http://localhost:3000", "https://testing-websocket-be.vercel.app", "https://testing-websocket-fe.vercel.app", ],
         methods: ["GET", "POST"]
     }
 });
