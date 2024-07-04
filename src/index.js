@@ -1,10 +1,13 @@
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import { createServer } from "http";
 import { Server } from "socket.io";
 
+dotenv.config({path:'../.env'});
+
 const app = express();
-const port = 5000;
+const port = process.env.PORT;
 app.use(cors({
     origin: "*",
     methods: ["GET", "POST"],
@@ -56,7 +59,7 @@ app.get('/', (req, res) => {
     res.send('Aplikasi Node.js dengan CORS diizinkan dari semua origin');
 });
 
-httpServer.listen(5000, () => {
+httpServer.listen(port, () => {
     console.log(`Express server listening on port: ${port}...`);
 });
 
