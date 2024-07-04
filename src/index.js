@@ -5,6 +5,12 @@ import { Server } from "socket.io";
 
 const app = express();
 const port = 5000;
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true
+}));
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
@@ -17,7 +23,6 @@ const io = new Server(httpServer, {
 });
 
 try {
-    app.use(cors());
     app.use(express.json());
 
     io.on('connection', (socket) => {
